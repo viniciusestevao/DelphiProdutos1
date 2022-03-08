@@ -1,0 +1,17 @@
+program ProjetoDelphiProdutos;
+
+uses
+  Vcl.Forms,
+  TelaListaProdutos in 'TelaListaProdutos.pas' {Form1},
+  DataModule in 'DataModule.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.Title := 'Cadastro de Produtos';
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

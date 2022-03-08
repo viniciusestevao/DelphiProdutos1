@@ -1,0 +1,36 @@
+unit DelphiProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.FMTBcd, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Datasnap.DBClient, Datasnap.Provider, Data.SqlExpr;
+
+type
+  TForm1 = class(TForm)
+    qryProduto: TSQLQuery;
+    dspProduto: TDataSetProvider;
+    cdsProduto: TClientDataSet;
+    dsProduto: TDataSource;
+    DBGrid1: TDBGrid;
+    procedure dsProdutoDataChange(Sender: TObject; Field: TField);
+    procedure dspProdutoAfterApplyUpdates(Sender: TObject;
+      var OwnerData: OleVariant);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses DataModule	;
+{$R *.dfm}
+
+
+
+end.

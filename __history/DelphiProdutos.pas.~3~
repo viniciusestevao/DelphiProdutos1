@@ -1,0 +1,44 @@
+unit DelphiProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.FMTBcd, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Datasnap.DBClient, Datasnap.Provider, Data.SqlExpr;
+
+type
+  TForm1 = class(TForm)
+    qryVenda: TSQLQuery;
+    qryVendaID_VENDA: TIntegerField;
+    qryVendaNUMERO: TIntegerField;
+    qryVendaCLIENTE: TIntegerField;
+    qryVendaDATA: TDateField;
+    qryVendaNOME_RAZAOSOCIAL: TStringField;
+    qryVendaSOMA: TFMTBCDField;
+    dspVenda: TDataSetProvider;
+    cdsVenda: TClientDataSet;
+    cdsVendaID_VENDA: TIntegerField;
+    cdsVendaNUMERO: TIntegerField;
+    cdsVendaCLIENTE: TIntegerField;
+    cdsVendaDATA: TDateField;
+    cdsVendaNOME_RAZAOSOCIAL: TStringField;
+    cdsVendaSOMA: TFMTBCDField;
+    dsVenda: TDataSource;
+    DBGrid1: TDBGrid;
+    procedure dsVendaDataChange(Sender: TObject; Field: TField);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+
+end.

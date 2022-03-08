@@ -1,0 +1,106 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de Produtos'
+  ClientHeight = 689
+  ClientWidth = 892
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 15
+  object DBGrid1: TDBGrid
+    Left = 48
+    Top = 384
+    Width = 892
+    Height = 242
+    DataSource = dsProduto
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'ID_VENDA'
+        Title.Caption = 'C'#243'digo'
+        Width = 60
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NUMERO'
+        Title.Caption = 'N'#250'mero'
+        Width = 60
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATA'
+        Title.Caption = 'Data Venda'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME_RAZAOSOCIAL'
+        Title.Caption = 'Nome/Raz'#227'o Social'
+        Width = 457
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'SOMA'
+        Title.Alignment = taRightJustify
+        Title.Caption = 'Total da Venda'
+        Visible = True
+      end>
+  end
+  object qryProduto: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      
+        'select  v.id_venda,v.numero,v.cliente,v.data, c.nome_razaosocial' +
+        ','
+      
+        '        sum(case when (vi.desconto>0) then (vi.preco_final*vi.qt' +
+        'de*vi.desconto/100) else (vi.preco_final*vi.qtde) end) as soma'
+      'from tbd_vendaitens vi'
+      '    right join tbd_vendas v on v.id_venda=vi.venda'
+      '    left join tbd_clientes c on c.id_cliente=v.cliente'
+      'group by 1,2,3,4,5')
+    SQLConnection = DataModule1.SQLConnection1
+    Left = 744
+    Top = 80
+  end
+  object dspProduto: TDataSetProvider
+    DataSet = qryProduto
+    UpdateMode = upWhereKeyOnly
+    AfterApplyUpdates = dspProdutoAfterApplyUpdates
+    Left = 744
+    Top = 144
+  end
+  object cdsProduto: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspProduto'
+    Left = 744
+    Top = 208
+  end
+  object dsProduto: TDataSource
+    DataSet = cdsProduto
+    OnDataChange = dsProdutoDataChange
+    Left = 744
+    Top = 272
+  end
+end

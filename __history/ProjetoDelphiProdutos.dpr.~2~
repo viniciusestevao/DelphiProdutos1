@@ -1,0 +1,15 @@
+program ProjetoDelphiProdutos;
+
+uses
+  Vcl.Forms,
+  DelphiProdutos in 'DelphiProdutos.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.Title := 'Cadastro de Produtos';
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

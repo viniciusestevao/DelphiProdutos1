@@ -4,8 +4,7 @@ uses
   Vcl.Forms,
   TelaListaProdutos in 'TelaListaProdutos.pas' {frmTelaListaProdutos},
   DataModule in 'DataModule.pas' {DataModule1: TDataModule},
-  CadastroProduto in 'CadastroProduto.pas' {frmCadProduto},
-  uClasseProduto in 'uClasseProduto.pas';
+  CadastroProduto in 'CadastroProduto.pas' {frmCadProduto};
 
 {$R *.res}
 
