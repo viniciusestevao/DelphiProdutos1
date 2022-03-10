@@ -233,6 +233,7 @@ object frmTelaListaProdutos: TfrmTelaListaProdutos
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
+      OnClick = btnExcluirClick
     end
     object btnAlterar: TBitBtn
       AlignWithMargins = True
@@ -253,46 +254,15 @@ object frmTelaListaProdutos: TfrmTelaListaProdutos
       ShowHint = True
       TabOrder = 2
       OnClick = btnAlterarClick
-      ExplicitTop = 3
     end
   end
-  object qryProduto: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      
-        'select  v.id_venda,v.numero,v.cliente,v.data, c.nome_razaosocial' +
-        ','
-      
-        '        sum(case when (vi.desconto>0) then (vi.preco_final*vi.qt' +
-        'de*vi.desconto/100) else (vi.preco_final*vi.qtde) end) as soma'
-      'from tbd_vendaitens vi'
-      '    right join tbd_vendas v on v.id_venda=vi.venda'
-      '    left join tbd_clientes c on c.id_cliente=v.cliente'
-      'group by 1,2,3,4,5')
-    SQLConnection = DataModule1.SQLConnection1
-    Left = 88
-    Top = 272
-  end
-  object dspProduto: TDataSetProvider
-    DataSet = qryProduto
-    UpdateMode = upWhereKeyOnly
-    Left = 88
-    Top = 328
-  end
-  object cdsProduto: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspProduto'
-    Left = 88
-    Top = 384
-  end
   object dsProduto: TDataSource
-    DataSet = FDQuery1
+    DataSet = fdqPrincipal
     Left = 88
     Top = 440
   end
-  object FDQuery1: TFDQuery
+  object fdqPrincipal: TFDQuery
+    IndexesActive = False
     Connection = FDConnection1
     SQL.Strings = (
       'select * from tab_Produto')
@@ -308,7 +278,6 @@ object frmTelaListaProdutos: TfrmTelaListaProdutos
       'DriverID=MSSQL')
     ResourceOptions.AssignedValues = [rvAutoReconnect]
     ResourceOptions.AutoReconnect = True
-    Connected = True
     LoginPrompt = False
     Left = 264
     Top = 440
@@ -316,7 +285,7 @@ object frmTelaListaProdutos: TfrmTelaListaProdutos
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'
     ScreenCursor = gcrHourGlass
-    Left = 264
-    Top = 504
+    Left = 384
+    Top = 440
   end
 end
